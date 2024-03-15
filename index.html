@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Calculadora de gastos personales</title>
+</head>
+<body>
+    <section>
+        <h1>Carga de gastos</h1>
+        <input type="text" id="nombre" placeholder="Nombre">
+        <select id="categorias" name="categorias">
+            <option value="alimentos">Alimentos</option>
+            <option value="transporte">Transporte</option>
+            <option value="alquiler">Alquiler</option>
+            <option value="salidas">Salidas</option>
+            <option value="internet">Internet</option>
+            <option value="farmacia">Farmacia</option>
+            <option value="otros">Otros</option>
+        <input type="number" id="monto" placeholder="Monto">
+        <button id="agregar-gasto">Agregar gasto!</button>
+    </section>
+    <section>
+        <h1>Gastos Registrados</h1>
+        <table id="tabla-gastos">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha</th>
+                    <th>Nombre</th>
+                    <th>Categoría</th>
+                    <th>Monto</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-gastos">
+                
+            </tbody>
+    </section>
+    <section>
+        <h1>Calculo total</h1>
+    </section>
+    <section>
+        <h1>Filtro de gastos por categoria</h1>
+    </section>
+    <section>
+        <h1></h1>
+    </section>
+    <script src="app.js"></script>
+</body>
+</html>
