@@ -3,7 +3,8 @@
 
 import Chart from 'chart.js/auto';
 
-export function graficarGastos(gastos: Gasto[]): void {
+
+export function graficarGastos(gastos): void {
     const labels = gastos.map(gasto => gasto.fecha);
     const montos = gastos.map(gasto => gasto.monto);
 

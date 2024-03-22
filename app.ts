@@ -3,10 +3,10 @@ import { graficarGastos } from './graficos';
 
 // Defino el type categoria.
 
-type Categoria = 'alimentos' | 'transporte' | 'alquiler' | 'salidas' | 'internet' | 'farmacia' | 'otros'
+export type Categoria = 'alimentos' | 'transporte' | 'alquiler' | 'salidas' | 'internet' | 'farmacia' | 'otros'
 
 // Defino la interface de Gasto.
-interface Gasto {
+export interface Gasto {
     id: number;
     fecha: Date;
     nombre: string;
@@ -14,7 +14,7 @@ interface Gasto {
     monto: number;
 }
 // Defino la clase de gasto.
-class Gasto {
+export class Gasto {
     static contadorId = 1; // Contador global para el ID
 
     id: number;

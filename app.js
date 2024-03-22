@@ -1,5 +1,9 @@
-// Defino el type categoria
-// Defino la clase de gasto
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Gasto = void 0;
+// Importo funciones.
+var graficos_1 = require("./graficos");
+// Defino la clase de gasto.
 var Gasto = /** @class */ (function () {
     function Gasto(id, fecha, nombre, categoria, monto) {
         // Cuerpo del constructor
@@ -29,32 +33,35 @@ var Gasto = /** @class */ (function () {
     Gasto.contadorId = 1; // Contador global para el ID
     return Gasto;
 }());
-// Función para cargar gastos desde localStorage y mostrarlos en el HTML
+exports.Gasto = Gasto;
+// Funcion que genera la tabla en el HTML.
+function generarTabla(data) {
+    var tablaBody = document.getElementById("tabla-gastos");
+    tablaBody.innerHTML = ""; // Limpiar contenido previo
+    data.forEach(function (gasto) {
+        var row = tablaBody.insertRow();
+        row.innerHTML = "\n            <td>".concat(gasto.id, "</td>\n            <td>").concat(gasto.fecha, "</td>\n            <td>").concat(gasto.nombre, "</td>\n            <td>").concat(gasto.categoria, "</td>\n            <td>").concat(gasto.monto, "</td>\n        ");
+    });
+    (0, graficos_1.graficarGastos)(data);
+}
+// Función para cargar gastos desde localStorage y mostrarlos en el HTML.
 function cargarGastosDesdeLocalStorage() {
     try {
         var gastosPreviosJSON = localStorage.getItem('gastos'); // Obtener gastos previos
         var gastosPrevios = gastosPreviosJSON ? JSON.parse(gastosPreviosJSON) : [];
         // Mostrar los gastos en el HTML (por ejemplo, en una lista)
-        var listaGastos_1 = document.getElementById('tabla-gastos');
-        if (listaGastos_1) {
-            listaGastos_1.innerHTML = '';
-            gastosPrevios.forEach(function (gasto) {
-                var li = document.createElement('li');
-                li.textContent = "".concat(gasto.nombre, " - $").concat(gasto.monto);
-                listaGastos_1.appendChild(li);
-            });
-        }
+        generarTabla(gastosPrevios);
     }
     catch (error) {
         console.error('Error al cargar gastos desde localStorage:', error);
     }
 }
-// Obtener elementos del formulario
+// Obtener elementos del formulario.
 var botonAgregarGasto = document.getElementById('agregar-gasto');
 var inputNombre = document.getElementById('nombre');
 var selectCategorias = document.getElementById('categorias');
 var inputMonto = document.getElementById('monto');
-// Escuchar el evento click del botón
+// Escuchar el evento click del botón "agregar gastos".
 botonAgregarGasto === null || botonAgregarGasto === void 0 ? void 0 : botonAgregarGasto.addEventListener('click', function () {
     // Obtener los valores del formulario
     var nombre = inputNombre.value;
@@ -67,5 +74,5 @@ botonAgregarGasto === null || botonAgregarGasto === void 0 ? void 0 : botonAgreg
     // Actualizar la lista de gastos en el HTML
     cargarGastosDesdeLocalStorage();
 });
-//event listeners:
+//Escucha el evento "load" del sitio.
 window.addEventListener('load', cargarGastosDesdeLocalStorage);
